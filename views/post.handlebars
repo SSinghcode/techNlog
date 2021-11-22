@@ -1,0 +1,35 @@
+<section class="container">
+  <section class="flex-row justify-center">
+    <div class="card align-center">
+      <h3><a href="/blogpost/{{blogpost.id}}">{{blogpost.title}}</a> <span class='added'>(Posted by
+          {{blogpost.user.username}} on {{ format_date blogpost.createdAt}})</span></h3>
+      <p id='blog-content' data-blogid='{{blogpost.id}}'>{{blogpost.content}}</p>
+    </div>
+  </section>
+</section>
+<hr>
+
+<form class="form new-comment-form">
+  <div class="form-group">
+    <label for="comment-text">Comment:</label>
+    <input class="form-input" type="text" id="comment-text" />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>
+<script src="../js/comment.js"></script>
+{{#if blogpost.comments.length}}
+<hr>
+<div class="card align-center">
+  <h3>Comments</h3>
+
+  {{#each blogpost.comments as |comment|}}
+  <div class="row mb-2">
+    <div class="col-md-8">
+      <p>{{comment.comment_text}} --{{format_date comment.created_at}} by {{comment.user.username}}</p>
+    </div>
+  </div>
+  {{/each}}
+</div>
+{{/if}}

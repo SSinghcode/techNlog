@@ -1,0 +1,11 @@
+<header>
+  <h1>Tech Blog</h1>
+</header>
+
+{{#each blogposts as |blogpost|}}
+<div class="card align-center">
+  <h3><a href="/blogpost/{{blogpost.id}}">{{blogpost.title}}</a> <span class='added'>(Posted by
+      {{blogpost.user.username}} on {{format_date blogpost.createdAt}})</span></h3>
+  <p>{{blogpost.content}}</p>
+</div>
+{{/each}}

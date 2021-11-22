@@ -1,0 +1,52 @@
+<header>
+  <h1>Dashboard</h1>
+</header>
+{{#if newPost}}
+<form class="form new-post-form">
+  <div class="form-group">
+    <label for="post-title">Title:</label>
+    <input class="form-input" type="text" id="post-title" />
+  </div>
+  <div class="form-group">
+    <label for="post-content">Content:</label>
+    <input class="form-input" type="textarea" id="post-content" />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>
+<script src="../js/dashboard.js"></script>
+{{else}}
+{{#if editPost}}
+<form class="form edit-post-form">
+  <div class="form-group">
+    <label for="post-title">Title:</label>
+    <input class="form-input" type="text" id="post-title" data-userid='{{id}}' value='{{blogpost.title}}' />
+  </div>
+  <div class="form-group">
+    <label for="post-content">Content:</label>
+    <input class="form-input" type="textarea" id="post-content" value='{{blogpost.content}}' />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" id='edit-update'>Update</button>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" id='edit-delete'>Delete</button>
+  </div>
+</form>
+<script src="../js/dashboard.js"></script>
+{{else}}
+<div class='dashboard'>
+  {{#each blogposts as |blogpost|}}
+  <div class="card align-center">
+    <h3><a href="/dashpost/{{blogpost.id}}">{{blogpost.title}}</a> <span class='added'>(Posted by
+        {{blogpost.user.username}} on {{format_date blogpost.createdAt}})</span></h3>
+    <p>{{blogpost.content}}</p>
+  </div>
+  {{/each}}
+</div>
+<hr>
+<button id='new-post' class="new-post-button align-center">New Post</button>
+<script src="./js/dashboard.js"></script>
+{{/if}}
+{{/if}}

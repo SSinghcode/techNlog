@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS snpf7b5yeg3jcrem;
+
+CREATE DATABASE snpf7b5yeg3jcrem;
